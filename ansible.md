@@ -16,3 +16,7 @@ Consists of three things:
 1. Managed Nodes
     - remote system that ansible controls
 
+## Building an Inventory
+Prerequisites: needs ip or FQDN (fully qualified domain name), as well as ssh access to host(s)
+
+
