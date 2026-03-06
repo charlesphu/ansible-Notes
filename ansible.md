@@ -61,9 +61,9 @@ Module
 
 Example:
 ```yaml
-name: playname
-hosts: hosts
-tasks:
+- name: playname
+  hosts: hosts
+  tasks:
     - name: ping
       ansible.builtin.ping:
 
