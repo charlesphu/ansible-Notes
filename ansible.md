@@ -17,7 +17,7 @@ Consists of three things:
     - remote system that ansible controls
 
 ## Building an Inventory
-Prerequisites: needs ip or FQDN (fully qualified domain name), as well as ssh access to host(s) \
+Prerequisites: needs ip or FQDN (fully qualified domain name), as well as ssh access to host(s)
 - example .ini inventory
     ```ini
         [myhosts]
@@ -38,8 +38,38 @@ Prerequisites: needs ip or FQDN (fully qualified domain name), as well as ssh ac
             var1: val
             var2: val
     ```
-  - variables can apply to specific hosts or all hosts in group\
-To verify inventory file `ansible-inventory -i inventory.ini --list` \
-To ping myhoosts group in inventory: `ansible myhosts -m ping -i inventory.ini` \
-`-u`option if username is different on control node vs managed ndoes
+- variables can apply to specific hosts or all hosts in group
+
+To verify inventory file `ansible-inventory -i inventory.ini --list`
+
+To ping myhoosts group in inventory: `ansible myhosts -m ping -i inventory.ini`
+
+`-u` option if username is different on control node vs managed ndoes
+
+## Creating a Playbook
+Playbook
+- list of plays that define the order in which Ansible performs actions
+
+Play
+- Ordered list of tasks that maps to nodes in an invenotry
+
+Task
+- reference to single node module that defiens operations that sible performs
+
+Module
+- unit of code or binary that Ansible runs on managed nodes
+
+Example:
+```yaml
+name: playname
+hosts: hosts
+tasks:
+    - name: ping
+      ansible.builtin.ping:
+
+    - name: print message
+      ansible.builtin.debug:
+        msg: Hello
+```
+To run: `ansible-playbook -i inventory.yml playbook.yml`
 
