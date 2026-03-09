@@ -79,7 +79,7 @@ Disable gather_facts:
 - gather facts will automatically run in a play and gathers system info, hardware details, network info, nevironment variables, and ansible specific variables, will error out if system does not have python3 package fully installed
 
 Run raw commands: 
-- `raw:`
+- `raw: <command>`
 - will create a changed state when running raw commands, use: `changed_when: false` to show `ok` instead of `changed`
 
 Run command if condition is met:
@@ -100,24 +100,22 @@ Ignore unreachable error:
 - If running commands like `reboot now` that immediately close ssh connection
 
 Retry:
-- `retry`
+- `retry: <times>`
 - can be used in cunjunction with `delay` and `until`
 
 Delay:
-- `delay`
+- `delay: <seconds>`
 
 Until:
 - `until: "'<text>' in <var>"`
 - example if using register for result of raw command: `until: "'Success' in var.stdout"`
 
 Wait for ssh connection on the host
-    ```yaml
-    tasks:
-        - name: wait for host ssh connection
-          ansible.builtin.wait_for:
-            host: "{{ inventory_hostname }}"
-            port: 22
-          delegate_to: localhost
-    ```
 
+    tasks:
+      - name: wait for host ssh connection
+        ansible.builtin.wait_for:
+          host: "{{ inventory_hostname }}"
+          port: 22
+        delegate_to: localhost
 
