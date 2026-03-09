@@ -77,26 +77,35 @@ To run: `ansible-playbook -i inventory.yml playbook.yml`
 Disable gather_facts:
 - `gather_facts: false`
 - gather facts will automatically run in a play and gathers system info, hardware details, network info, nevironment variables, and ansible specific variables, will error out if system does not have python3 package fully installed
+
 Run raw commands: 
 - `raw:`
 - will create a changed state when running raw commands, use: `changed_when: false` to show `ok` instead of `changed`
+
 Run command if condition is met:
 - `when <condition>`
+
 Save variables:
 - `register: <var>`
 - can be used in conjunction with `when`
+
 Disable changed state:
 - `changed_when: false` 
+
 Run play when certain condition is met
 - '`when: <var/condition>`
+
 Ignore unreachable error:
 - `ignore_uncreachable: yes`
 - If running commands like `reboot now` that immediately close ssh connection
+
 Retry:
 - `retry`
 - can be used in cunjunction with `delay` and `until`
+
 Delay:
 - `delay`
+
 Until:
 - `until: "'<text>' in <var>"`
 - example if using register for result of raw command: `until: "'Success' in var.stdout"`
@@ -110,4 +119,5 @@ Wait for ssh connection on the host
             port: 22
           delegate_to: localhost
     ```
+
 
